@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# Allow all origins (for testing/evaluation)
+# Enable CORS for all domains
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -29,3 +29,7 @@ async def sentiment_analysis(request: Request):
         results.append({"sentence": sentence, "sentiment": sentiment})
 
     return {"results": results}
+
+@app.get("/")
+def root():
+    return {"message": "FastAPI Sentiment Analysis API is running!"}
